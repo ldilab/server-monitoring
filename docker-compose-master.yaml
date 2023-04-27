@@ -4,19 +4,20 @@ services:
     ports:
       - "${PROMETHEUS_HOST_PORT}:9090"
     command:
-      - --config.file=/etc/prometheus/prometheus.yml
-      - --storage.tsdb.path=/prometheus
-      - --web.console.libraries=/usr/share/prometheus/console_libraries
-      - --web.console.templates=/usr/share/prometheus/consoles
-      - --storage.tsdb.retention.time=${PROMETHEUS_STORAGE_TSDB_RETENTION_TIME}
-      -  '--web.enable-lifecycle'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
+      - '--config.file=/home/prometheus.yml'
+      - '--web.enable-lifecycle'
     restart: always
     volumes:
-      - ./gpu-metrics-prometheus-config.yaml:/etc/prometheus/prometheus.yml:ro
+      # make sure gpu-metrics-prometheus-config.yaml has 777
+      # sudo chmod -R 777 gpu-metrics-prometheus-config.yaml
+      - ./gpu-metrics-prometheus-config.yaml:/home/prometheus.yml
       - prometheus_data:/prometheus
     networks:
       - gpu_metrics
-      
+
   grafana:
     image: grafana/grafana:${GRAFANA_IMAGE_TAG}
     ports:
