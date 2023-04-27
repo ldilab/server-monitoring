@@ -60,7 +60,7 @@ services:
     ports:
       - "${PROMETHEUS_HOST_PORT}:9090"
     command:
-      - --config.file=/etc/prometheus/prometheus.yml
+      - --config.file=/usr/share/prometheus/prometheus.yml
       - --storage.tsdb.path=/prometheus
       - --web.console.libraries=/usr/share/prometheus/console_libraries
       - --web.console.templates=/usr/share/prometheus/consoles
@@ -70,7 +70,7 @@ services:
     volumes:
       - type: bind
         source: ./gpu-metrics-prometheus-config.yaml
-        target: /etc/prometheus/prometheus.yml
+        target: /usr/share/prometheus/prometheus.yml
       - prometheus_data:/prometheus
     networks:
       - gpu_metrics
