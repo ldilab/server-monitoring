@@ -60,12 +60,12 @@ services:
     ports:
       - "${PROMETHEUS_HOST_PORT}:9090"
     command:
+      - --web.enable-lifecycle
       - --config.file=/etc/prometheus/prometheus.yml
       - --storage.tsdb.path=/prometheus
       - --web.console.libraries=/usr/share/prometheus/console_libraries
       - --web.console.templates=/usr/share/prometheus/consoles
       - --storage.tsdb.retention.time=${PROMETHEUS_STORAGE_TSDB_RETENTION_TIME}
-      - --web.enable-lifecycle
     restart: always
     volumes:
       - ./gpu-metrics-prometheus-config.yaml:/etc/prometheus/prometheus.yml:ro
