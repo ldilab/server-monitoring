@@ -71,6 +71,7 @@ services:
       - type: bind
         source: ./gpu-metrics-prometheus-config.yaml
         target: /home/prometheus.yml
+        mode: "rw"
       - prometheus_data:/prometheus
     networks:
       - gpu_metrics
