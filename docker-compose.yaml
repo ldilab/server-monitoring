@@ -64,13 +64,13 @@ services:
       - --web.console.libraries=/usr/share/prometheus/console_libraries
       - --web.console.templates=/usr/share/prometheus/consoles
       - --storage.tsdb.retention.time=${PROMETHEUS_STORAGE_TSDB_RETENTION_TIME}
-      - '--config.file=/usr/share/prometheus/prometheus.yml'
+      - '--config.file=/home/prometheus.yml'
       -  '--web.enable-lifecycle'
     restart: always
     volumes:
       - type: bind
         source: ./gpu-metrics-prometheus-config.yaml
-        target: /usr/share/prometheus/prometheus.yml
+        target: /home/prometheus.yml
       - prometheus_data:/prometheus
     networks:
       - gpu_metrics
