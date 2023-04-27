@@ -30,8 +30,7 @@ services:
       - '--path.rootfs=/rootfs'
       - '--path.sysfs=/host/sys'
 #      - '--no-collector.diskstats'
-      - --collectors.enabled 'conntrack,diskstats,entropy,filefd,filesystem,loadavg,mdadm,meminfo,netdev,netstat,stat,textfile,time,vmstat,ipvs'
-      - --collector.filesystem.ignored-mount-points "^/(sys|proc|dev|host|etc)($$|/)"
+      - '--collector.filesystem.ignored-mount-points=^/(sys|proc|dev|host|etc)($$|/)'
 #      - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
     ports:
       - "9100:9100"
