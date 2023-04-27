@@ -68,7 +68,7 @@ services:
       -  '--web.enable-lifecycle'
     restart: always
     volumes:
-      - ./gpu-metrics-prometheus-config.yaml:/etc/prometheus/prometheus.yml:ro
+      - ./gpu-metrics-prometheus-config.yaml:/etc/prometheus/prometheus.yml
       - prometheus_data:/prometheus
     networks:
       - gpu_metrics
