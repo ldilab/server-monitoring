@@ -29,8 +29,9 @@ services:
       - '--path.procfs=/host/proc'
       - '--path.rootfs=/rootfs'
       - '--path.sysfs=/host/sys'
-      - '--collector.diskstats.ignored-devices'
+#      - '--no-collector.diskstats'
       - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
+      - '--collector.diskstats.ignored-devices="^(ram|loop|fd|(h|s|v|xv)d[a-z])\\d+$"'
     ports:
       - "9100:9100"
     networks:
