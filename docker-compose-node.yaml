@@ -19,7 +19,7 @@ services:
       - gpu_metrics
       
   node_exporter:
-    image: prom/node-exporter:latest
+    image: bitnami/node-exporter:latest
     restart: unless-stopped
     volumes:
       - /proc:/host/proc:ro
