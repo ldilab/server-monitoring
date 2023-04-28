@@ -17,9 +17,9 @@ services:
       - "${DCGM_EXPORTER_HOST_PORT}:9400"
     networks:
       - gpu_metrics
-      
+
   node_exporter:
-    image: bitnami/node-exporter:latest
+    image: prom/node-exporter:latest
     restart: unless-stopped
     volumes:
       - /proc:/host/proc:ro
@@ -29,14 +29,14 @@ services:
       - '--path.procfs=/host/proc'
       - '--path.rootfs=/rootfs'
       - '--path.sysfs=/host/sys'
-      - '--no-collector.diskstats'
-      - --collector.filesystem.mount-points-exclude
-      - "^/(sys|proc|dev|host|etc|rootfs/var/lib/docker/containers|rootfs/var/lib/docker/overlay2|rootfs/run/docker/netns|rootfs/var/lib/docker/aufs)($$|/)"
+      - '--collector.diskstats.ignored-devices'
+      - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
     ports:
       - "9100:9100"
+    network_mode: host
     networks:
       - gpu_metrics
-      
+
   cadvisor:
     image: gcr.io/cadvisor/cadvisor:v0.47.1
     container_name: cadvisor
