@@ -26,7 +26,7 @@ services:
       - /sys:/host/sys:ro
       - /:/rootfs:ro
     command:
-      - '--web.listen-address=":9401"'
+      - '--web.listen-address=:9401'
       - '--path.procfs=/host/proc'
       - '--path.rootfs=/rootfs'
       - '--path.sysfs=/host/sys'
