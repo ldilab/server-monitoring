@@ -26,14 +26,13 @@ services:
       - /sys:/host/sys:ro
       - /:/rootfs:ro
     command:
+      - '--web-listen-address=9401'
       - '--path.procfs=/host/proc'
       - '--path.rootfs=/rootfs'
       - '--path.sysfs=/host/sys'
-      - '--collector.diskstats.ignored-devices'
       - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
     ports:
-      - "9100:9100"
-    network_mode: host
+      - "9401:9401"
     networks:
       - gpu_metrics
 
