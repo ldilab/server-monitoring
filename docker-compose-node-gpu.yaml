@@ -59,6 +59,7 @@ services:
     restart: unless-stopped
     command:
       - '-port=8098'
+      - '-e LD_LIBRARY_PATH=/usr/local/cuda/lib64'
     ports:
       - "8098:8098"
     networks:
