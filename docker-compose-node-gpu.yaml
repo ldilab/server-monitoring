@@ -8,7 +8,7 @@ services:
             - driver: nvidia
               count: all
               capabilities: [ gpu ]
-    restart: always
+    restart: unless-stopped
     environment:
       - DCGM_EXPORTER_NO_HOSTNAME=1
     cap_add:
@@ -37,19 +37,11 @@ services:
       - gpu_metrics
 
   cadvisor:
-    image: gcr.io/cadvisor/cadvisor:v0.46.0
+    image: gcr.io/cadvisor/cadvisor:latest
     container_name: cadvisor
     privileged: true
     devices:
       - /dev/kmsg:/dev/kmsg
-      - /dev/nvidia0:/dev/nvidia0
-      - /dev/nvidia1:/dev/nvidia1
-      - /dev/nvidia2:/dev/nvidia2
-      - /dev/nvidia3:/dev/nvidia3
-      - /dev/nvidia4:/dev/nvidia4
-      - /dev/nvidia5:/dev/nvidia5
-      - /dev/nvidia6:/dev/nvidia6
-      - /dev/nvidia7:/dev/nvidia7
     volumes:
       - /:/rootfs:ro
       - /var/run:/var/run:ro
@@ -59,7 +51,6 @@ services:
     restart: unless-stopped
     command:
       - '-port=8098'
-      - '-e LD_LIBRARY_PATH=/usr/local/cuda/lib64'
     ports:
       - "8098:8098"
     networks:
