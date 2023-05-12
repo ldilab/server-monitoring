@@ -1,5 +1,7 @@
 FROM nvidia/dcgm-exporter:3.1.7-3.1.4-ubuntu20.04
 
+RUN apt-get -y update
+
 RUN apt-get install -y ca-certificates \
     && apt-get update \
     && apt-get install wget -y \
