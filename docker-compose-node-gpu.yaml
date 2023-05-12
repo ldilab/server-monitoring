@@ -18,6 +18,15 @@ services:
     networks:
       - gpu_metrics
 
+  nvidia-smi-exporter:
+    build: ../nvidia-smi-exporter
+    runtime: nvidia
+    pid: "host"
+    volumes:
+      - prometheus_textfiles:/run/prometheus
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: unless-stopped
+
   node_exporter:
     image: prom/node-exporter:latest
     restart: unless-stopped
