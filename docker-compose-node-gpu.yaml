@@ -70,6 +70,10 @@ volumes:
     driver: local
   grafana_data:
     driver: local
+  prometheus_textfiles:
+    driver_opts:
+      type: tmpfs
+      device: tmpfs
 
 networks:
   gpu_metrics:
