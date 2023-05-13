@@ -2,8 +2,8 @@ FROM nvidia/dcgm-exporter:3.1.7-3.1.4-ubuntu20.04
 
 RUN echo "Acquire::Check-Valid-Until \"false\";\nAcquire::Check-Date \"false\";" | cat > /etc/apt/apt.conf.d/10no--check-valid-until
 
-RUN apt-get install -y ca-certificates \
-    && apt-get update \
+RUN apt-get update --fix-missing \
+    && apt-get install -y ca-certificates \
     && apt-get install wget -y \
     && wget -qO- https://get.docker.com | sh \
     && apt-get clean \
