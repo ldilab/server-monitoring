@@ -2,14 +2,15 @@ FROM nvidia/dcgm-exporter:3.1.7-3.1.4-ubuntu20.04
 
 RUN echo "Acquire::Check-Valid-Until \"false\";\nAcquire::Check-Date \"false\";" | cat > /etc/apt/apt.conf.d/10no--check-valid-until
 
-RUN sed -i "s/us.archive/old-releases/" /etc/apt/sources.list
+RUN sed -i "s/archive/old-releases/" /etc/apt/sources.list
 
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys A4B469963BF863CC
 
+RUN apt-get update --fix-missing
+
 RUN apt install -y ca-certificates --fix-missing
 
-RUN apt-get update --fix-missing \
-    && apt-get install wget -y \
+RUN apt-get install wget -y \
     && wget -qO- https://get.docker.com | sh \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
