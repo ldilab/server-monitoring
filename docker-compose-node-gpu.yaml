@@ -19,10 +19,19 @@ services:
       - gpu_metrics
 
   nvidia-smi-exporter:
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [ gpu ]
+
     privileged: true
     build: ./nvidia-smi-exporter
     runtime: nvidia
     pid: "host"
+
     volumes:
       - prometheus_textfiles:/run/prometheus
       - /var/run/docker.sock:/var/run/docker.sock
