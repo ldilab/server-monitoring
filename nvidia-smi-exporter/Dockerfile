@@ -13,7 +13,7 @@ RUN apt install -y ca-certificates --fix-missing
 RUN update-ca-certificates
 
 RUN apt-get install wget -y \
-    && apt-get install -y nvidia-container-toolkit-base \
+    && apt-get install -y nvidia-container-toolkit \
     && wget -qO- https://get.docker.com | sh \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
