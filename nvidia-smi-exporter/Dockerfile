@@ -5,6 +5,7 @@ FROM nvidia/dcgm-exporter:3.1.7-3.1.4-ubuntu20.04
 #RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys A4B469963BF863CC
 
 RUN rm /etc/apt/sources.list.d/cuda.list
+RUN ls -l /etc/apt/sources.list.d/
 RUN rm /etc/apt/sources.list.d/nvidia-ml.list
 RUN apt-key del 7fa2af80
 RUN apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/3bf863cc.pub
