@@ -6,7 +6,7 @@ FROM nvidia/dcgm-exporter:3.1.7-3.1.4-ubuntu20.04
 
 ENV TARGET='deb http://developer.download.nvidia.com'
 ENV REP = 'deb [by-hash=no] http://developer.download.nvidia.com'
-RUN sed -i "s/${TARGET}/${REP}" /etc/apt/sources.list
+RUN sed -i "s/${TARGET}/${REP}/g" /etc/apt/sources.list
 
 RUN apt-get update
 
