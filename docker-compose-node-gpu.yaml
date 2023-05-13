@@ -19,6 +19,7 @@ services:
       - gpu_metrics
 
   nvidia-smi-exporter:
+    privileged: true
     build: ./nvidia-smi-exporter
     runtime: nvidia
     pid: "host"
