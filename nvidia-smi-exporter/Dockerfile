@@ -4,7 +4,7 @@ RUN echo "Acquire::Check-Valid-Until \"false\";\nAcquire::Check-Date \"false\";"
 
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys A4B469963BF863CC
 
-RUN apt install -y ca-certificates
+RUN apt install -y ca-certificates --fix-missing
 
 RUN apt-get update --fix-missing \
     && apt-get install wget -y \
