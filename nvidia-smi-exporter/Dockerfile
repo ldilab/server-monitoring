@@ -1,4 +1,4 @@
-FROM nvidia/dcgm-exporter:3.1.7-3.1.4-ubuntu20.04
+FROM nvcr.io/nvidia/k8s/dcgm-exporter:3.1.7-3.1.4-ubuntu20.04
 
 RUN rm /etc/apt/sources.list.d/cuda.list
 RUN ls -l /etc/apt/sources.list.d/
